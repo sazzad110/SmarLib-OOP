@@ -1,6 +1,7 @@
 package org.example.domain;
 
 import java.time.Year;
+import java.util.Objects;
 
 public class Book {
     private static int totalBooksCreated = 0;
@@ -63,6 +64,33 @@ public class Book {
                 + ", Author: " + this.author
                 + ", ISBN: " + this.isbn
                 + ", Published Year: " + this.publishedYear);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{"
+                + "title='" + this.title + '\''
+                + ", author='" + this.author + '\''
+                + ", isbn='" + this.isbn + '\''
+                + ", publishedYear=" + this.publishedYear
+                + '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Book)) {
+            return false;
+        }
+        Book other = (Book) obj;
+        return this.isbn.equals(other.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.isbn);
     }
 
     private static String validateNotBlank(String fieldName, String value) {
