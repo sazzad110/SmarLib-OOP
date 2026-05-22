@@ -1,35 +1,33 @@
 package org.example.app;
 
 import org.example.domain.Book;
+import org.example.domain.Journal;
+import org.example.domain.LibraryItem;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to SmartLib Core");
 
-        Book book1 = new Book("Clean Code", "Robert C. Martin", "9780132350884", 2008);
-        Book book2 = new Book("Clean Code Second Copy", "Different Author", "9780132350884", 2020);
-        Book book3 = new Book("Effective Java", "Joshua Bloch", "9780134685991", 2018);
+        LibraryItem bookItem = new Book("B-101", "Clean Code", 2008, "Robert C. Martin", "9780132350884");
+        LibraryItem journalItem = new Journal("J-201", "Nature AI", 2024, 52, "Nature Publishing");
 
         System.out.println();
-        System.out.println("1) Printing a Book object directly:");
-        System.out.println(book1);
+        System.out.println("1) Creating Book and Journal objects:");
+        bookItem.displayBasicInfo();
+        journalItem.displayBasicInfo();
 
         System.out.println();
-        System.out.println("2) Comparing two books with same ISBN using equals():");
-        System.out.println("book1.equals(book2): " + book1.equals(book2));
-        System.out.println("book1 == book2: " + (book1 == book2));
+        System.out.println("2) Calling calculateLateFee():");
+        System.out.println("Book late fee for 4 days: " + bookItem.calculateLateFee(4));
+        System.out.println("Journal late fee for 4 days: " + journalItem.calculateLateFee(4));
 
         System.out.println();
-        System.out.println("3) hashCode values:");
-        System.out.println("book1 hashCode: " + book1.hashCode());
-        System.out.println("book2 hashCode: " + book2.hashCode());
-        System.out.println("book3 hashCode: " + book3.hashCode());
+        System.out.println("3) super keyword demonstration:");
+        System.out.println("Book and Journal call super.displayBasicInfo() and then print their own fields.");
 
         System.out.println();
-        System.out.println("4) Consistency rule:");
-        System.out.println("If two books are equal by equals(), they must return the same hashCode().");
-        System.out.println("book1.equals(book2) is " + book1.equals(book2)
-                + ", so their hashCodes should match.");
-        System.out.println("Total books created: " + Book.getTotalBooksCreated());
+        System.out.println("4) IS-A relationship:");
+        System.out.println("Book IS-A LibraryItem and Journal IS-A LibraryItem.");
+        System.out.println("That is why both can be stored in LibraryItem references.");
     }
 }
